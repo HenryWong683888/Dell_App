@@ -30,7 +30,7 @@ namespace MiddleApp_Dell
            
             InitializeComponent();
 
-            //showOnMonitor(1);
+            showOnMonitor(1);
 
             objform = new Form2();
             // objform.Show();
@@ -255,9 +255,9 @@ namespace MiddleApp_Dell
         private void Form1_Load(object sender, EventArgs e)
         {
             
-             //this.TopMost = true;
-             //this.FormBorderStyle = FormBorderStyle.None;
-             //this.WindowState = FormWindowState.Maximized;
+             this.TopMost = true;
+             this.FormBorderStyle = FormBorderStyle.None;
+             this.WindowState = FormWindowState.Maximized;
 
         }
 

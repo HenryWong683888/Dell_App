@@ -25,28 +25,23 @@ namespace MiddleApp_Dell
 
             LeftDown = new Point();
 
-
-
             InkOverlay1 = new InkOverlay
             {
                 Handle = pictureBox1.Handle,
-                Enabled = true
+                Enabled = false
             };
 
 
-            //SetDrawingAttributes();
-            //ToEditMode();
-
-           // UpdatePictureBox();
+           
         }
 
-        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             LeftDown.X = e.X;
             LeftDown.Y = e.Y;
         }
 
-        private void panel1_MouseMove(object sender, MouseEventArgs e)
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -57,20 +52,10 @@ namespace MiddleApp_Dell
         }
 
 
-
-        private void ToEditMode()
-        {
-            InkOverlay1.EditingMode = InkOverlayEditingMode.Ink;
-            // InkOverlay.Cursor = System.Windows.Forms.Cursors.Hand;
-        }
+       
         public void Form2_Load(object sender, EventArgs e)
         {
-            //this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            CreateMyBorderlessWindow();
-        }
 
-        public void CreateMyBorderlessWindow()
-        {
             this.FormBorderStyle = FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -78,6 +63,8 @@ namespace MiddleApp_Dell
             // Remove the control box so the form will only display client area.
             this.ControlBox = false;
         }
+
+       
 
         void showOnMonitor(int showOnMonitor)
         {
@@ -93,31 +80,9 @@ namespace MiddleApp_Dell
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
         }
 
-        private void SetDrawingAttributes()
-        {
-            var attriburtes = new DrawingAttributes()
-            {
-                Color = Color.Black,
-                FitToCurve = true,
-                Height = 44,
-                Width = 44,
-                IgnorePressure = false,
-                PenTip = PenTip.Ball,
-            };
-            InkOverlay1.DefaultDrawingAttributes = attriburtes;
-            InkOverlay1.EraserMode = InkOverlayEraserMode.StrokeErase;
+        
 
-        }
-
-        public void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        public void pictureBox1_Click_1(object sender, EventArgs e)
-        {
-
-        }
+       
         public void clear()
         {
             InkOverlay1.Ink.DeleteStrokes(InkOverlay1.Ink.Strokes);
@@ -135,8 +100,9 @@ namespace MiddleApp_Dell
                 stream.Read(bytes, 0, bytes.Length);
                 
                 InkOverlay1.Ink.Load(bytes);
-                InkOverlay1.DefaultDrawingAttributes.Color = Color.Black;
+                
             }
+            InkOverlay1.Enabled = false;
             pictureBox1.Refresh();
         }
    
@@ -152,7 +118,7 @@ namespace MiddleApp_Dell
                 stream.Read(bytes, 0, bytes.Length);
                 InkOverlay1.Ink.Load(bytes);
             }
-            
+            InkOverlay1.Enabled = false;
             pictureBox1.Refresh();
 
         }
